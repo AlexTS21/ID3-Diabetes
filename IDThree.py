@@ -7,14 +7,18 @@ A3 = [[1,0],[1,0], [0,0], [0,0], [0,0]]
 A4= [[1,1],[1,0],[0,1],[0,0],[0,1],[0,0]]
 A5 = [[1,1],[1,0],[0,1], [0,1], [0,0], [0,0]]
 
-variables = [A1, A2, A3, A4, A5]
+variables = {
+    1 : A1,
+    2 : A2,
+    3 : A3,
+    4 : A4,
+    5 : A5
+}
 
 def obtener_entropia_variables(data):
     entropias = {}
-    i = 1
-    for variable in data:
-        entropias[i] = Entropia.entropia_variable(variable)
-        i+=1
+    for variable in data.values():
+        entropias[list(data.keys())[list(data.values()).index(variable)]] = Entropia.entropia_variable(variable)
     return entropias
 
 def obtener_entropia_minima(data):
@@ -23,8 +27,8 @@ def obtener_entropia_minima(data):
 
 #ELIMINA DEL SET DE DATOS UNA VARIABLE Y LA DEVUELVE
 def eliminar_variable(data, variable):
-    var = data[variable-1]
-    data.remove(var)    
+    var = data[variable]
+    data.pop(variable)    
     return var
 
 #OBTINE LOS INDICES DE UN VALOR X EN UNA VARIABLE
@@ -44,25 +48,53 @@ def obtener_indices(variable):
 def dividir_data(data, parametro):
     var = eliminar_variable(data, parametro)
     in1, in0 = obtener_indices(var)
-    data1 = []
-    data0 = []
-    for variable in data:
+    data1 = {}
+    data0 = {}
+    for variable in data.values():
         var0 = []
         var1 = []
+        i=0
         for elemento in variable:
-            if(variable.index(elemento) in var0):
+            if(i in in0):
                 var0.append(elemento)
             else:
                 var1.append(elemento)
-        data1.append(var1)
-        data0.append(var0)
+            i+=1
+        data1[list(data.keys())[list(data.values()).index(variable)]]=var1
+        data0[list(data.keys())[list(data.values()).index(variable)]]=var0
     return data1, data0
 
 print(obtener_entropia_variables(variables))
 print(obtener_entropia_minima(variables))
 
-data1, data2 = dividir_data(variables, obtener_entropia_minima(variables))
+data1, data2 = dividir_data(variables, 2)
 
+print("DATAAAAA 1")
 print(data1)
 print(data2)
+
+print("ENTROPIASSS")
+print(obtener_entropia_variables(data1))
+print(obtener_entropia_minima(data1))
+print("DATA 2")
+print(obtener_entropia_variables(data2))
+print(obtener_entropia_minima(data2))
+
+data3, data4 = dividir_data(data2, 4)
+print("ENTROPIASS2")
+print(obtener_entropia_variables(data3))
+print(obtener_entropia_minima(data3))
+print("DATA 4")
+print(obtener_entropia_variables(data4))
+print(obtener_entropia_minima(data4))
+
+
+data5, data6 =dividir_data(data4, 5)
+print("ENTROPIASS3")
+print(obtener_entropia_variables(data5))
+print(obtener_entropia_minima(data5))
+print("DATA 4")
+print(obtener_entropia_variables(data6))
+print(obtener_entropia_minima(data6))
+
 
