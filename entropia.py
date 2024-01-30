@@ -1,80 +1,89 @@
 import math
 
-A1= [[1,1],[1,1],[0,1],[0,1],[0,1],[0,1], [2,0], [2,0], [2,0], [2,0], [3,1], [3,1]]
-A2 = [[1,1],[1,1],[0,0],[0,0],[0,0],[0,0], [2, 1], [2, 1], [2, 1], [2, 1], [3,0], [3,0]]
-A3 = [[1,0],[1,0], [2,0], [2,0], [2,0], [2,0], [3,0], [3,0], [3,0], [3,0], [4,1], [4,1]]
-A4= [[1,1],[1,0],[0,1],[0,0],[0,1],[0,0],[2,1],[2,0],[2,1],[2,0],[3,1],[3,0]]
-A5 = [[1,1],[1,0],[2,1], [2,1], [2,0], [2,0], [3,1], [3,1], [3,0], [3,0], [4,1], [4,1] ]
+#LAS VARIABLES SON UNA LISTA QUE CONTIENE UNA LISTA CON 2 ELEMENTOS (CLASE A LA QUE PERTENECEN)(VALOR QUE TOMA)
+#A1= [[1,1],[1,1],[0,1],[0,1],[0,1],[0,1], [2,0], [2,0], [2,0], [2,0], [3,1], [3,1]]
+#A2 = [[1,1],[1,1],[0,0],[0,0],[0,0],[0,0], [2, 1], [2, 1], [2, 1], [2, 1], [3,0], [3,0]]
+#A3 = [[1,0],[1,0], [2,0], [2,0], [2,0], [2,0], [3,0], [3,0], [3,0], [3,0], [4,1], [4,1]]
+#A4= [[1,1],[1,0],[0,1],[0,0],[0,1],[0,0],[2,1],[2,0],[2,1],[2,0],[3,1],[3,0]]
+#A5 = [[1,1],[1,0],[2,1], [2,1], [2,0], [2,0], [3,1], [3,1], [3,0], [3,0], [4,1], [4,1] ]
 
-#PROBABILIDAD DE UN VALOR X EN GENERAL
-def probabilidad_total(arreglo, valor):
-    return contar_valor(arreglo, valor)/len(arreglo)
+#PROBABILIDAD DE UN VALOR X SEA TOMADO EN UNA VARIABLE
+#FUNCIONES QUE UTILIZA: contar_valor
+def probabilidad_valor_en_variable(variable, valor):
+    return contar_valor(variable, valor)/len(variable)
 
-#CUENTA UN VALOR X EN GENERAL
-def contar_valor(arreglo, valor):
+#CUENTA UN VALOR X EN UNA VARIBALE
+def contar_valor(variable, valor):
     contador = 0
-    for element in arreglo:
+    for element in variable:
         if(element[1] == valor):
             contador = contador+1
     return contador
 
-#CUENTA CUANTOS VALORES X EN UNA CLASE
-def contar_clase(arreglo, valor, clase):
+#CUENTA CUANTOS VALORES X DE UNA VARIABLE HAY EN UNA CLASE
+def contar_clase(variable, valor, clase):
     contador = 0
-    for element in arreglo:
+    for element in variable:
         if(element[0] == clase):
             if(element[1] == valor):
                 contador = contador+1
     return contador
 
-#CUENTA CUANTOS ELEMENTOS PERTENECEN A UNA CLASE
-def tamaño_clase(arreglo, clase):
+#CUENTA CUANTOS ELEMENTOS CONTIENE UNA CLASE
+def tamano_clase(variable, clase):
     contador = 0
-    for elemento in arreglo:
+    for elemento in variable:
         if(elemento[0] == clase):
             contador = contador +1
     return contador
 
-#PROBABILIDAD CONDCIONAL
-def probabilidad_condicional(arreglo, valor, clase):
-    p = contar_clase(arreglo, valor, clase)/contar_valor(arreglo, valor)
+#CALCULA LA PROBABILIDAD DE QUE LA VARIABLE TOME UN VALOR X EN UNA CLASE (VALORES X EN CALSE/TOTAL DE ELMETNOS EN CLASE)
+#FUNCIONES QUE UTILIZA:contar_clase, contar_valor
+def probabilidad_condicional(variable, valor, clase):
+    p = 0 
+    if(contar_valor(variable, valor) != 0):
+        p=contar_clase(variable, valor, clase)/contar_valor(variable, valor)
     if(p!=0):
         return p*math.log(p,2)
     else:
         return 0
 
 #TOTAL DE CLASES QUE EXISTEN
-def total_clases(arreglo):
-    c = clases(arreglo)
+#FUNCIONES QUE UTILIZA: obtener_clases
+def total_clases(variable):
+    c = obtener_clases(variable)
     return len(c)
 
 #DEVUELVE UNA LISTA CON LAS CALSES QUE HAY
-def clases(arreglo):
+def obtener_clases(variable):
     c = list()
-    for elemento in arreglo:
+    for elemento in variable:
         if(not(elemento[0] in c)):
             c.append(elemento[0])
     return c
 
-#SUMATORIA DE CALSES
-def sumatoria_clases(arreglo, valor):
+#SUMATORIA DE LA ENTROPIA DE UNA CLASE TOMANDO UN VALOR X
+#FUNCIONES QUE UTILIZA: obtener_clases, probabilidad_condicional
+def sumatoria_entropia_clases_variable(variable, valor):
     resultado = 0
-    
-    for elemento in clases(arreglo):
-        resultado = resultado + probabilidad_condicional(arreglo, valor, elemento)
+    for elemento in obtener_clases(variable):
+        resultado = resultado + probabilidad_condicional(variable, valor, elemento)
     return resultado
 
-#CALCULO DE ENTROPIA PARA UNA VARIABLE A BITS
+#CALCULO DE ENTROPIA PARA UNA VARIABLE CONSIDERANDO SOLO VALORES BINARIOS (0,1)
+#FUNCIONES QUE UTILIZA: probabilidad_valor_en_variable
 def entropia_variable(variable):
-    valor_uno = probabilidad_total(variable, 1)*sumatoria_clases(variable, 1)
-    valor_cero = probabilidad_total(variable, 0)*sumatoria_clases(variable, 0)
+    valor_uno = probabilidad_valor_en_variable(variable, 1)*sumatoria_entropia_clases_variable(variable, 1)
+    valor_cero = probabilidad_valor_en_variable(variable, 0)*sumatoria_entropia_clases_variable(variable, 0)
     return abs(valor_cero + valor_uno)
 
-#PROBABILIDAD DE UNA CLASE
+#CALCULA LA PROBABILIDAD DE CLASE (ELEMENTOS DE LA CLASE/TOTAL DE ELEMETNOS)
+#FUNCIONES QUE UTILIZA: tamaño_clase
 def probabilidad_clase(vector, clase):
-    return tamaño_clase(vector, clase)/len(vector)
+    return tamano_clase(vector, clase)/len(vector)
 
-#ENTROPIA DE LA CLASE
+#CALUCLA LA ENTROPIA DE UNA CLASE A TRAVES DE SU PROBABILIDAD (ELEMENTOS DE LA CLASE/TOTAL DE ELEMETNOS)
+#FUNCIONES QUE UTILIZA: probabilidad_clase
 def entropia_clase(vector, clase):
     p = probabilidad_clase(vector, clase)
     if(p!=0):
@@ -82,19 +91,20 @@ def entropia_clase(vector, clase):
     else:
         return 0
 
+#CALCULA LA ENTROPIA GENERAL DE UN CONJUNTO DE DATOS A TRAVES DE LA SUMATORIA DE LA ENTROPIA DE CADA CLASE
+#FUNCIONES QUE UTILIZA: entropia_clase, clases
 def entropia_general(vector):
     entropia = 0
-    c = clases(vector)
+    c = obtener_clases(vector)
     for elemento in c:
         entropia = entropia + entropia_clase(vector, elemento)
     return abs(entropia)
 
-
-print(entropia_variable(A1))
-print(entropia_variable(A2))
-print(entropia_variable(A3))
-print(entropia_variable(A4))
-print(entropia_variable(A5))
-
-print(entropia_general(A1))
+#print(entropia_variable(A1))
+#print(entropia_variable(A2))
+#print(entropia_variable(A3))
+#print(entropia_variable(A4))
+#print(entropia_variable(A5))
+#
+#print(entropia_general(A1))
 
