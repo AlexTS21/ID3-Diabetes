@@ -53,3 +53,29 @@ print(IDThree.obtener_entropia_minima(data1Iz))
 print("Para divicion a derecha: ")
 print(IDThree.obtener_entropia_variables(data1De))
 print(IDThree.obtener_entropia_minima(data1De))
+
+#Segunda divicion
+#Lado izquierdo
+data2IZIz, data2IZDe = IDThree.dividir_data(data1Iz, 2)
+
+print("Para divicion a izquierda: ")
+#print(data2IZIz)
+print(IDThree.obtener_entropia_variables(data2IZIz))
+print(IDThree.obtener_entropia_minima(data2IZIz))
+
+print("Para divicion a derecha: ")
+print(IDThree.obtener_entropia_variables(data2IZDe))
+print(IDThree.obtener_entropia_minima(data2IZDe))
+
+
+#Lado derecho
+data2DEIz, data2DEDe = IDThree.dividir_data(data1De, 2)
+print("Para divicion a izquierda: ")
+#print(data2IZIz)
+print(IDThree.obtener_entropia_variables(data2DEIz))
+print(IDThree.obtener_entropia_minima(data2DEIz))
+
+print("Para divicion a derecha: ")
+print(IDThree.obtener_entropia_variables(data2DEDe))
+print(IDThree.obtener_entropia_minima(data2DEDe))
+
