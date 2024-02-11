@@ -25,7 +25,7 @@ def obtener_entropia_variables(data):
 def obtener_entropia_minima(data):
     entropias = obtener_entropia_variables(data)
     key = min(entropias, key=entropias.get)
-    return key
+    return key, entropias[key]
 
 def obtener_valor(data, key):
     variable = data[key]
@@ -103,6 +103,6 @@ def dividir_data(data, parametro):
 #print(obtener_entropia_variables(data6))
 #print(obtener_entropia_minima(data6))
 
-print(obtener_entropia_variables(variables))
-key = obtener_entropia_minima(variables)
-print(obtener_valor(variables, key))
+#print(obtener_entropia_variables(variables))
+#key = obtener_entropia_minima(variables)
+#print(obtener_valor(variables, key))
