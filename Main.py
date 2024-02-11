@@ -1,7 +1,7 @@
 import xlrd
 import IDThree
 
-file_path = "C:\\Users\Patos\\Documents\\Alex\Gerardo\\ID3-Diabetes\\BASE_ORIGINAL.xls"
+file_path = "BASE_ORIGINAL.xls"
 
 openFile = xlrd.open_workbook(file_path)
 
@@ -61,7 +61,8 @@ data2IZIz, data2IZDe = IDThree.dividir_data(data1Iz, 2)
 print("Para divicion a izquierda: ")
 #print(data2IZIz)
 print(IDThree.obtener_entropia_variables(data2IZIz))
-print(IDThree.obtener_entropia_minima(data2IZIz))
+mini = IDThree.obtener_entropia_minima(data2IZIz)
+print("HOla", IDThree.obtener_valor(data2IZIz, mini))
 
 print("Para divicion a derecha: ")
 print(IDThree.obtener_entropia_variables(data2IZDe))

@@ -21,9 +21,15 @@ def obtener_entropia_variables(data):
         entropias[list(data.keys())[list(data.values()).index(variable)]] = Entropia.entropia_variable(variable)
     return entropias
 
+
 def obtener_entropia_minima(data):
     entropias = obtener_entropia_variables(data)
-    return min(entropias, key=entropias.get)
+    key = min(entropias, key=entropias.get)
+    return key
+
+def obtener_valor(data, key):
+    variable = data[key]
+    return variable[0][0]
 
 #ELIMINA DEL SET DE DATOS UNA VARIABLE Y LA DEVUELVE
 def eliminar_variable(data, variable):
@@ -64,37 +70,39 @@ def dividir_data(data, parametro):
         data0[list(data.keys())[list(data.values()).index(variable)]]=var0
     return data1, data0
 
+#print(obtener_entropia_variables(variables))
+#print(obtener_entropia_minima(variables))
+#
+#data1, data2 = dividir_data(variables, 2)
+#
+#print("DATAAAAA 1")
+#print(data1)
+#print(data2)
+#
+#print("ENTROPIASSS")
+#print(obtener_entropia_variables(data1))
+#print(obtener_entropia_minima(data1))
+#print("DATA 2")
+#print(obtener_entropia_variables(data2))
+#print(obtener_entropia_minima(data2))
+#
+#data3, data4 = dividir_data(data2, 4)
+#print("ENTROPIASS2")
+#print(obtener_entropia_variables(data3))
+#print(obtener_entropia_minima(data3))
+#print("DATA 4")
+#print(obtener_entropia_variables(data4))
+#print(obtener_entropia_minima(data4))
+#
+#
+#data5, data6 =dividir_data(data4, 5)
+#print("ENTROPIASS3")
+#print(obtener_entropia_variables(data5))
+#print(obtener_entropia_minima(data5))
+#print("DATA 4")
+#print(obtener_entropia_variables(data6))
+#print(obtener_entropia_minima(data6))
+
 print(obtener_entropia_variables(variables))
-print(obtener_entropia_minima(variables))
-
-data1, data2 = dividir_data(variables, 2)
-
-print("DATAAAAA 1")
-print(data1)
-print(data2)
-
-print("ENTROPIASSS")
-print(obtener_entropia_variables(data1))
-print(obtener_entropia_minima(data1))
-print("DATA 2")
-print(obtener_entropia_variables(data2))
-print(obtener_entropia_minima(data2))
-
-data3, data4 = dividir_data(data2, 4)
-print("ENTROPIASS2")
-print(obtener_entropia_variables(data3))
-print(obtener_entropia_minima(data3))
-print("DATA 4")
-print(obtener_entropia_variables(data4))
-print(obtener_entropia_minima(data4))
-
-
-data5, data6 =dividir_data(data4, 5)
-print("ENTROPIASS3")
-print(obtener_entropia_variables(data5))
-print(obtener_entropia_minima(data5))
-print("DATA 4")
-print(obtener_entropia_variables(data6))
-print(obtener_entropia_minima(data6))
-
-
+key = obtener_entropia_minima(variables)
+print(obtener_valor(variables, key))
