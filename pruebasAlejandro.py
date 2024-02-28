@@ -1,22 +1,15 @@
 from BinaryTree import BinaryTree
+from Node import Node
 
 arbol = BinaryTree()
 
-arbol.insert(5, 5)
-arbol.insert(6, 6)
-arbol.insert(7, 7)
-arbol.insert(2, 2)
-arbol.insert(4, 4)
-arbol.insert(10, 10)
-arbol.insert(22, 22)
-arbol.insert(1, 1)
-arbol.insert(3, 3)
-arbol.insert(8, 8)
+arbol.root = Node(1, 1)
 
-anses = []
-anses = arbol.getAncestros(3)
-for element in anses:
-    if not element is None:
-        print(element.key)
+arbol.insert_right(1, 2, 2)
+arbol.insert_left(1,3,3)
 
-print(anses)
+arbol.insert_left(2,4,4)
+arbol.insert_right(2,4,4)
+
+
+arbol.printTree()

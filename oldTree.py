@@ -33,6 +33,7 @@ print("Otra", a, "\n\n")
 print(IDThree.obtener_entropia_variables(a))
 print(b)
 print(IDThree.obtener_entropia_variables(b))
+print("this", IDThree.obtener_valor(b, 1))
 
 
 
@@ -71,7 +72,3 @@ print("dataYM: ", IDThree.obtener_entropia_minima(dataYM))
 dataYR, dataYS = IDThree.dividir_data(dataYM, 1)
 print("dataYR: ", IDThree.obtener_entropia_minima(dataYR))
 print("dataYS: ", IDThree.obtener_entropia_minima(dataYS))
-
-
-
-
