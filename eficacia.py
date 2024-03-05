@@ -1,6 +1,9 @@
 import IDThree
 import xlrd
 import random
+import decition_tree
+from Node import Node
+
 
 
 
@@ -76,81 +79,29 @@ for i in range(2, sheet.ncols):
     dataPrueba[i-1] = variable
 
 #---------------Generamos arbol de nuevo set de datos
-    
-print(IDThree.obtener_entropia_minima(data))
-dataB, dataC = IDThree.dividir_data(data, 3)
 
-print(IDThree.obtener_entropia_minima(dataB))
-print(IDThree.obtener_entropia_minima(dataC))
 
-dataD, dataE = IDThree.dividir_data(dataB, 2)
-dataF, dataG = IDThree.dividir_data(dataC, 1)
+tree = decition_tree.generate_binary_decition_tree(data)
+tree.printTree()
 
-print(IDThree.obtener_entropia_minima(dataD))
-print(IDThree.obtener_entropia_minima(dataE))
-print(IDThree.obtener_entropia_minima(dataF))
-print(IDThree.obtener_entropia_minima(dataG))
+prueba = {
+    1: 1,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 1,
+    6: 1,
+    7: 0,
+    8: 1,
+    9: 0,
+    10: 0,
+    11: 0,
+    12: 0,
+    13: 0,
+    14: 1,
+    15: 0,
+}
 
-dataH, dataI = IDThree.dividir_data(dataE, 10)
-dataJ, dataK = IDThree.dividir_data(dataF, 14)
-dataL, dataM = IDThree.dividir_data(dataG, 2)
+#Arbol
 
-print("TERCER NIVEL\n", IDThree.obtener_entropia_minima(dataH))
-print(IDThree.obtener_entropia_minima(dataI))
-print(IDThree.obtener_entropia_minima(dataJ))
-print(IDThree.obtener_entropia_minima(dataK))
-print(IDThree.obtener_entropia_minima(dataL))
-print(IDThree.obtener_entropia_minima(dataM))
-
-dataN, dataO = IDThree.dividir_data(dataI, 8)
-dataP, dataQ = IDThree.dividir_data(dataK, 8)
-dataR, dataS = IDThree.dividir_data(dataL, 15)
-dataT, dataU = IDThree.dividir_data(dataM, 10)
-
-print("NIVEL 4\n",IDThree.obtener_entropia_minima(dataN))
-print(IDThree.obtener_entropia_minima(dataO))
-print(IDThree.obtener_entropia_minima(dataP))
-print(IDThree.obtener_entropia_minima(dataQ))
-print(IDThree.obtener_entropia_minima(dataR))
-print(IDThree.obtener_entropia_minima(dataS))
-print(IDThree.obtener_entropia_minima(dataT))
-print(IDThree.obtener_entropia_minima(dataU))
-
-dataV, dataW = IDThree.dividir_data(dataO, 12)
-dataX, dataY = IDThree.dividir_data(dataQ, 13)
-dataZ, dataA1 = IDThree.dividir_data(dataS, 13)
-dataB1, dataC1 = IDThree.dividir_data(dataT, 7)
-dataD1, dataE1 = IDThree.dividir_data(dataU, 5)
-
-print("NIVEL 5", IDThree.obtener_entropia_minima(dataV))
-print(IDThree.obtener_entropia_minima(dataW))
-print(IDThree.obtener_entropia_minima(dataX))
-print(IDThree.obtener_entropia_minima(dataY))
-print(IDThree.obtener_entropia_minima(dataZ))
-print(IDThree.obtener_entropia_minima(dataA1))
-print(IDThree.obtener_entropia_minima(dataB1))
-print(IDThree.obtener_entropia_minima(dataC1))
-print(IDThree.obtener_entropia_minima(dataD1))
-print(IDThree.obtener_entropia_minima(dataE1))
-
-dataF1, dataG1 = IDThree.dividir_data(dataY, 12)
-dataH1, dataI1 = IDThree.dividir_data(dataC1, 6)
-dataJ1, dataK1 = IDThree.dividir_data(dataD1, 13)
-
-print("NIVEL 6", IDThree.obtener_entropia_minima(dataF1))
-print(IDThree.obtener_entropia_minima(dataG1))
-print(IDThree.obtener_entropia_minima(dataH1))
-print(IDThree.obtener_entropia_minima(dataI1))
-print(IDThree.obtener_entropia_minima(dataJ1))
-print(IDThree.obtener_entropia_minima(dataK1))
-
-dataL1, dataM1 = IDThree.dividir_data(dataG1, 2)
-dataN1, dataO1 = IDThree.dividir_data(dataK1, 6)
-print("NIVEL 7", IDThree.obtener_entropia_minima(dataL1))
-print(IDThree.obtener_entropia_minima(dataM1))
-print(IDThree.obtener_entropia_minima(dataN1))
-print(IDThree.obtener_entropia_minima(dataO1))
-
-dataP1, dataQ1 = IDThree.dividir_data(dataM1, 15)
-print("NIVEL 8",IDThree.obtener_entropia_minima(dataP1))
-print(IDThree.obtener_entropia_minima(dataQ1))
+print(tree.test_path(prueba))

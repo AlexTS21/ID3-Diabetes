@@ -1,15 +1,14 @@
-from BinaryTree import BinaryTree
-from Node import Node
+import IDThree
+import data_stract
 
-arbol = BinaryTree()
-
-arbol.root = Node(1, 1)
-
-arbol.insert_right(1, 2, 2)
-arbol.insert_left(1,3,3)
-
-arbol.insert_left(2,4,4)
-arbol.insert_right(2,4,4)
+file_path = "BASE_ORIGINAL.xls"
+dataY, dataO = data_stract.get_variables(file_path)
 
 
-arbol.printTree()
+print(IDThree.obtener_entropia_minima(dataY))
+
+dataB, dataC = IDThree.dividir_data(dataY, 3)
+print(IDThree.obtener_entropia_minima(dataB))
+
+dataD, dataE = IDThree.dividir_data(dataB, 2)
+print(IDThree.obtener_entropia_minima(dataE))

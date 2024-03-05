@@ -1,22 +1,34 @@
 import IDThree
-import Entropia
-import BinaryTree
+from BinaryTree import BinaryTree
+from Node import Node
 import data_stract
+import random
 
 
-data = data_stract.get_variables("BASE_ORIGINAL.xls")
-
-def decision_tree(data):
-    tree = BinaryTree.BinaryTree()
-    tree.
-
-    
+def generate_binary_decition_tree(data):
+    tree = BinaryTree()
+    node = Node(random.randint(0,100), data)
+    tree.root = node
+    decition_tree(tree, tree.root.key, data)
     return tree
 
-def d_t_r(tree, data):
-    entropia = IDThree.obtener_entropia_minima(data)
-    if(entropia != 0):
-        dataI, dataD = IDThree.dividir_data(entropia)
-
+def decition_tree(tree, key, data):
+    variable, value = IDThree.obtener_entropia_minima(data)
+    if(value != 0 and IDThree.iterable_data(data)):
+        dataL, dataR = IDThree.dividir_data(data, variable)
+        keyL = generate_key(tree)
+        keyR = generate_key(tree)
+        tree.insert_left(key, keyL, dataL)
+        tree.insert_right(key, keyR, dataR)
+        decition_tree(tree, keyL, dataL)
+        decition_tree(tree, keyR, dataR)
     else:
         return
+
+def generate_key(tree):
+    while(True):
+        rand = random.randint(0,100)
+        if(tree.search(rand) == None):
+            return rand
+
+

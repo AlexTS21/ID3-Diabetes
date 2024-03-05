@@ -74,7 +74,9 @@ print(IDThree.obtener_entropia_minima(dataF1))
 print(IDThree.obtener_entropia_minima(dataG1))
 
 dataH1, dataI1 = IDThree.dividir_data(dataG1, 3)
-print(IDThree.obtener_entropia_minima(dataH1))
+print(dataH1)
+print(IDThree.iterable_data(dataH1))
+#print("Hola: ",IDThree.obtener_entropia_minima(dataH1))
 #print(IDThree.obtener_entropia_minima(dataI1))
 
 

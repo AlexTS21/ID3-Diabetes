@@ -68,7 +68,35 @@ def dividir_data(data, parametro):
             i+=1
         data1[list(data.keys())[list(data.values()).index(variable)]]=var1
         data0[list(data.keys())[list(data.values()).index(variable)]]=var0
+    data[parametro] = var
+    order_dic(data)
     return data1, data0
+
+def order_dic(dic):
+    keys = []
+    sorted_dict = {}
+    for key in dic.keys():
+        keys.append(key)
+    sorted_keys = sorted(keys)
+
+    for element in sorted_keys:
+        sorted_dict[element] = dic[element]
+    dic.clear()
+    for element in sorted_keys:
+        dic[element] = sorted_dict[element]
+    
+
+    
+
+
+
+def iterable_data(data):
+    if(len(data) < 2):
+        return False
+    for variable in data.values():
+        if(len(variable) == 0):
+            return False
+    return True
 
 #print(obtener_entropia_variables(variables))
 #print(obtener_entropia_minima(variables))
