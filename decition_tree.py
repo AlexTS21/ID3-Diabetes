@@ -22,6 +22,9 @@ def decition_tree(tree, key, data):
         tree.insert_right(key, keyR, dataR)
         decition_tree(tree, keyL, dataL)
         decition_tree(tree, keyR, dataR)
+    elif(not IDThree.iterable_data(data) and value!=0):
+        node = tree.search(key)
+        node.key = -1
     else:
         return
 

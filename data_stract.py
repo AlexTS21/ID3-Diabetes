@@ -1,11 +1,10 @@
 import xlrd
 
-def get_variables(path):
-    file_path = "BASE_ORIGINAL.xls"
+def get_variables(path, sheet_op):
 
-    openFile = xlrd.open_workbook(file_path)
+    openFile = xlrd.open_workbook(path)
 
-    sheet = openFile.sheet_by_name("diabetes_data_upload")
+    sheet = openFile.sheet_by_name(sheet_op)
 
     dataY = {
         1: None,
@@ -62,3 +61,43 @@ def get_variables(path):
         dataO[i-1] = variableO
 
     return dataY, dataO
+
+def data_stact_prueba(path, sheet_op):
+    openFile = xlrd.open_workbook(path)
+
+    sheet = openFile.sheet_by_name(sheet_op)
+    dataYL = []
+    dataOL = []
+    for i in range(1, sheet.nrows):
+        tup = []
+        tup.append(0)
+        data = {
+                1: None,
+                2: None,
+                3: None,
+                4: None,
+                5: None,
+                6: None,
+                7: None,
+                8: None,
+                9: None,
+                10: None,
+                11: None,
+                12: None,
+                13: None,
+                14: None,
+                15: None,
+            }
+        for j in range(2, sheet.ncols):
+            data[j-1] = 0
+            if sheet.cell_value(i,j) == "Yes":
+                data[j-1] = 1
+        if(sheet.cell_value(i, 1) == "Positive" ):
+            tup[0]  = 1
+        tup.append(data)
+        if(sheet.cell_value(i,0) < 50):
+            dataYL.append(tup)
+        else:
+            dataOL.append(tup)
+
+    return dataYL, dataOL

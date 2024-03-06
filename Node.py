@@ -34,7 +34,7 @@ class Node:
         if node is None:
             return None
         if node.right is None and node.left is None:
-            return variable
+            return node
         #Traverse
         if(path[variable] == 1):
             return Node.path_by_dic(node.left, path)

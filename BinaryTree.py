@@ -1,5 +1,5 @@
 from Node import Node
-
+import IDThree
 
 class BinaryTree:
 
@@ -36,4 +36,13 @@ class BinaryTree:
         Node.print_postOrder(self.root)
 
     def test_path(self, path):
-        return Node.path_by_dic(self.root, path)
+        node =  Node.path_by_dic(self.root, path)
+        if node.key == -1:
+            return -1
+        else:
+            variable, value = IDThree.obtener_entropia_minima(node.data)
+            if(path[variable] == 1):
+                return 1
+            else:
+                return 0
+        
