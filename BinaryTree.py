@@ -41,8 +41,13 @@ class BinaryTree:
             return -1
         else:
             variable, value = IDThree.obtener_entropia_minima(node.data)
-            if(path[variable] == 1):
-                return 1
+            if IDThree.get_num_clase(node.data[variable]) > 1:
+                if(path[variable] == 1):
+                    return 1
+                else:
+                    return 0
             else:
-                return 0
-        
+                if node.data[variable][0][0] == 0:
+                    return 0
+                else:
+                    return 1        

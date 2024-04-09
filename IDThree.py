@@ -87,7 +87,12 @@ def order_dic(dic):
     
 
     
-
+def get_num_clase(variable):
+    lis = []
+    for element in variable:
+        if element[0] not in lis:
+            lis.append(element[0])
+    return len(lis)
 
 
 def iterable_data(data):
