@@ -1,88 +1,54 @@
 import xlrd
 
-def get_variables(path, sheet_op):
-
+#DEVUELVE UN DICCIONARIO CON LOS DATOS
+def get_Data(path, sheet_op):
     openFile = xlrd.open_workbook(path)
-
     sheet = openFile.sheet_by_name(sheet_op)
 
-    data = {
-        1: None,
-        2: None,
-        3: None,
-        4: None,
-        5: None,
-        6: None,
-        7: None,
-        8: None,
-        9: None,
-        10: None,
-        11: None,
-        12: None,
-        13: None,
-        14: None,
-        15: None,
-    }
+    data={}
+    for i in range(1, sheet.ncols):
+        data[i] = None  
 
-
-    for i in range(2, sheet.ncols):
+    for i in range(1, sheet.ncols):
         variable = []
         for j in range(1, sheet.nrows):
             clase = 0
             valor = 0
-            if(sheet.cell_value(j, 1) == "Positive"):
+            if(sheet.cell_value(j, 0) == "Positive"):
                 clase = 1
             if(sheet.cell_value(j, i) == "Yes" or sheet.cell_value(j, i)=="Female"):
                 valor = 1
-            if(int(sheet.cell_value(j, 0)) < 50 and i==16):
+            if(int(sheet.cell_value(j, sheet.ncols-1)) < 50 and i==sheet.ncols-1):
                 valor = 1 
             elemento = [clase, valor]
             variable.append(elemento)
-        data[i-1] = variable
-      
-
+        data[i] = variable
+    del openFile
     return data
 
-def data_stact_prueba(path, sheet_op):
+#DEVUELVE LISTA CON TUPLAS (CLASE, DICCIONARIO CON CAMINO)
+def get_testData(path, sheet_op):
     openFile = xlrd.open_workbook(path)
-
     sheet = openFile.sheet_by_name(sheet_op)
-    dataYL = []
-    dataOL = []
+    dataP = []
+
     for i in range(1, sheet.nrows):
         tup = []
         tup.append(0)
-        data = {
-                1: None,
-                2: None,
-                3: None,
-                4: None,
-                5: None,
-                6: None,
-                7: None,
-                8: None,
-                9: None,
-                10: None,
-                11: None,
-                12: None,
-                13: None,
-                14: None,
-                15: None,
-            }
-        for j in range(2, sheet.ncols):
-            data[j-1] = 0
-            if sheet.cell_value(i,j) == "Yes":
-                data[j-1] = 1
-        if(sheet.cell_value(i, 1) == "Positive" ):
+        dataPI = {}
+        for r in range(1, sheet.ncols):
+            dataPI[r] = None  # Valor vacío, puede ser "" o [] o None, según lo que necesites
+        
+        for j in range(1, sheet.ncols):
+            dataPI[j] = 0
+            if sheet.cell_value(i,j) == "Yes" or sheet.cell_value(i, j)=="Female":
+                dataPI[j] = 1
+            if int(sheet.cell_value(i, sheet.ncols-1)) <50 and j == sheet.ncols-1:
+                dataPI[j] = 1
+        if(sheet.cell_value(i, 0) == "Positive" ):
             tup[0]  = 1
-        tup.append(data)
-        if(sheet.cell_value(i,0) < 50):
-            dataYL.append(tup)
-        else:
-            dataOL.append(tup)
-
-    return dataYL, dataOL
-
-
-
-
+        tup.append(dataPI)
+        dataP.append(tup)
+    del openFile
+    
+    return dataP

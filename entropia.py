@@ -99,12 +99,3 @@ def entropia_general(vector):
     for elemento in c:
         entropia = entropia + entropia_clase(vector, elemento)
     return abs(entropia)
-
-#print(entropia_variable(A1))
-#print(entropia_variable(A2))
-#print(entropia_variable(A3))
-#print(entropia_variable(A4))
-#print(entropia_variable(A5))
-#
-#print(entropia_general(A1))
-

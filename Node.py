@@ -25,9 +25,9 @@ class Node:
             node.print_postOrder(node.right)
         if(node.left != None):
             node.print_postOrder(node.left)
-        v, e = IDThree.obtener_entropia_minima(node.data)
-        if(e== 0 or e ==-1):
-            print("(",v, ", ", e, ") ", node.data[v], " aleatorio ", node.key)
+        print(IDThree.obtener_entropia_minima(node.data))
+        
+           
 # La clase node es un nodo que tiene dos enlaces, uno para la dereha y otro para la izuierda
         
     @staticmethod
@@ -42,5 +42,3 @@ class Node:
             return Node.path_by_dic(node.left, path)
         return Node.path_by_dic(node.right, path)
         
-
-

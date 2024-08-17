@@ -1,9 +1,7 @@
 import IDThree
 from BinaryTree import BinaryTree
 from Node import Node
-import data_stract
 import random
-
 
 def generate_binary_decition_tree(data):
     tree = BinaryTree()
@@ -33,5 +31,3 @@ def generate_key(tree):
         rand = random.randint(0,100)
         if(tree.search(rand) == None):
             return rand
-
-

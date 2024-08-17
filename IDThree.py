@@ -1,19 +1,4 @@
 import Entropia
-import BinaryTree
-
-A1= [[1,1],[1,1],[0,1],[0,1],[0,1],[0,1]]
-A2 = [[1,1],[1,0],[0,0],[0,0],[0,0],[0,0]]
-A3 = [[1,0],[1,0], [0,0], [0,0], [0,0]]
-A4= [[1,1],[1,0],[0,1],[0,0],[0,1],[0,0]]
-A5 = [[1,1],[1,0],[0,1], [0,1], [0,0], [0,0]]
-
-variables = {
-    1 : A1,
-    2 : A2,
-    3 : A3,
-    4 : A4,
-    5 : A5
-}
 
 def obtener_entropia_variables(data):
     entropias = {}
@@ -102,40 +87,3 @@ def iterable_data(data):
         if(len(variable) == 0):
             return False
     return True
-
-#print(obtener_entropia_variables(variables))
-#print(obtener_entropia_minima(variables))
-#
-#data1, data2 = dividir_data(variables, 2)
-#
-#print("DATAAAAA 1")
-#print(data1)
-#print(data2)
-#
-#print("ENTROPIASSS")
-#print(obtener_entropia_variables(data1))
-#print(obtener_entropia_minima(data1))
-#print("DATA 2")
-#print(obtener_entropia_variables(data2))
-#print(obtener_entropia_minima(data2))
-#
-#data3, data4 = dividir_data(data2, 4)
-#print("ENTROPIASS2")
-#print(obtener_entropia_variables(data3))
-#print(obtener_entropia_minima(data3))
-#print("DATA 4")
-#print(obtener_entropia_variables(data4))
-#print(obtener_entropia_minima(data4))
-#
-#
-#data5, data6 =dividir_data(data4, 5)
-#print("ENTROPIASS3")
-#print(obtener_entropia_variables(data5))
-#print(obtener_entropia_minima(data5))
-#print("DATA 4")
-#print(obtener_entropia_variables(data6))
-#print(obtener_entropia_minima(data6))
-
-#print(obtener_entropia_variables(variables))
-#key = obtener_entropia_minima(variables)
-#print(obtener_valor(variables, key))
