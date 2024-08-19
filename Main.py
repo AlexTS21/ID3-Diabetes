@@ -3,9 +3,9 @@ import data_stract
 
 print("------------------------------ID3------------------------------")
 #Abrir la base de datos
-file_path = "BD.xls"#input("Nombre de la base de datos (archivo xls): ") + ".xls"
-train_sheet = "E" #input("Hoja de entrenamiento: ") #E
-test_sheet = "P" #input("Hoja de prueba: ") #P
+file_path = input("Nombre de la base de datos (archivo xls): ") + ".xls"
+train_sheet = input("Hoja de entrenamiento: ") #E
+test_sheet = input("Hoja de prueba: ") #P
 
 
 #Extraemos la data de entrenamiento
@@ -31,4 +31,4 @@ for element in dataP:
        correcrto+=1
 
 print("------------------------------\nLA EFICIENCIA ES: ", correcrto/len(dataP)*100, "%\nAciertos/total: ",  correcrto, "/", len(dataP))
-input("Precione una tecla para terminar el programa")
+input("Precione enter para terminar el programa")
