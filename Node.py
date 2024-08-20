@@ -34,7 +34,7 @@ class Node:
                 print("(", index, ", - ) \t\t\tNO RESULT")
         else:
             print("(", index, ",", dat,") ")
-    
+ 
     @staticmethod
     def getClass(tup):
         cals = tup[0][0]
