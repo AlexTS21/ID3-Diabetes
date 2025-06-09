@@ -89,6 +89,7 @@ def reboot():
     buttonS.place(relx=0.5, rely=0.55, anchor='center') 
     buttonE.place_forget()
     label.config(text="Sistema de detección de diabetes".upper())
+    changeText(-1)
     return
 
 def start():
