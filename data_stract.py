@@ -37,7 +37,7 @@ def get_testData(path, sheet_op):
         tup.append(0)
         dataPI = {}
         for r in range(1, sheet.ncols):
-            dataPI[r] = None  # Valor vacío, puede ser "" o [] o None, según lo que necesites
+            dataPI[r] = None 
         
         for j in range(1, sheet.ncols):
             dataPI[j] = 0

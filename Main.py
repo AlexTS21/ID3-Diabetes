@@ -1,23 +1,13 @@
 import decition_tree
-import data_stract
 import IDThree
 import Node
 import tkinter as tk
+import pickle
 
-#Abrir la base de datos
-file_path = "BD.xls"
-train_sheet = "E"
-test_sheet = "P"
+with open('tree.pkl', 'rb') as archivo:
+    tree = pickle.load(archivo)
 
-#Extraemos la data de entrenamiento
-data = data_stract.get_Data(file_path, train_sheet)
-
-#Extraemos la data de prueba
-dataP = data_stract.get_testData(file_path, test_sheet)
-#print(dataP)
-
-#Generamos el arbol de desicion
-tree = decition_tree.generate_binary_decition_tree(data)
+#tree.printTree()
 
 #Preguntas
 questions = [
@@ -122,16 +112,16 @@ boton_estilo = {
      
 }
 
-# Crear la ventana principal
+
 root = tk.Tk()
 root.title("ID3-D")
 root.geometry("400x230")
 
-# Crear una etiqueta (leyenda)
+
 label = tk.Label(root, text="Sistema de detección de diabetes".upper(), font=("Montserrat", 12))
 label.place(relx=0.5, rely=0.2, anchor="center")
 
-# Crear los botones y asociarlos con la función y sus parámetros
+
 button1 = tk.Button(root, text="Si", command=lambda: runTree( 1), **boton_estilo)
 
 
@@ -143,5 +133,5 @@ buttonE = tk.Button(root, text="Regresar al inicio", command=reboot, **boton_est
 
 buttonS  = tk.Button(root, text="Empezar Test",  command=start, **boton_estilo)
 buttonS.place(relx=0.5, rely=0.55, anchor='center') 
-# Ejecutar el bucle principal de la ventana
+
 root.mainloop()

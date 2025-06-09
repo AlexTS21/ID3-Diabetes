@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+BD.xls
+tree.pkl
