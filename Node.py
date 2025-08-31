@@ -1,4 +1,4 @@
-import IDThree
+from .IDThree import obtener_entropia_minima
 class Node:
     def __init__(self, clave, data):
         self.data = data
@@ -26,7 +26,7 @@ class Node:
         if(node.left != None):
             node.print_postOrder(node.left)
         
-        index, dat = IDThree.obtener_entropia_minima(node.data)
+        index, dat = obtener_entropia_minima(node.data)
         if(node.left ==None):
             if(node.key != -1):
                 print("(", index, ",", dat,") \t\t\t", Node.getClass(node.data[index]))
@@ -61,7 +61,7 @@ class Node:
         
     @staticmethod
     def path_by_dic(node, path):
-        variable, value = IDThree.obtener_entropia_minima(node.data)
+        variable, value = obtener_entropia_minima(node.data)
         if node is None:
             return None
         if node.right is None and node.left is None:

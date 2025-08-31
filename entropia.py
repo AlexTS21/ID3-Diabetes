@@ -1,4 +1,4 @@
-import math
+from math import log
 
 #LAS VARIABLES SON UNA LISTA QUE CONTIENE UNA LISTA CON 2 ELEMENTOS (CLASE A LA QUE PERTENECEN)(VALOR QUE TOMA)
 #A1= [[1,1],[1,1],[0,1],[0,1],[0,1],[0,1], [2,0], [2,0], [2,0], [2,0], [3,1], [3,1]]
@@ -44,7 +44,7 @@ def probabilidad_condicional(variable, valor, clase):
     if(contar_valor(variable, valor) != 0):
         p=contar_clase(variable, valor, clase)/contar_valor(variable, valor)
     if(p!=0):
-        return p*math.log(p,2)
+        return p*log(p,2)
     else:
         return 0
 
@@ -87,7 +87,7 @@ def probabilidad_clase(vector, clase):
 def entropia_clase(vector, clase):
     p = probabilidad_clase(vector, clase)
     if(p!=0):
-        return p*math.log(p,2)
+        return p*log(p,2)
     else:
         return 0
 

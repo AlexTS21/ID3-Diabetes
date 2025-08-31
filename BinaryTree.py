@@ -1,5 +1,5 @@
-from Node import Node
-import IDThree
+from .Node import Node
+from .IDThree import obtener_entropia_minima, get_num_clase
 
 class BinaryTree:
 
@@ -40,8 +40,8 @@ class BinaryTree:
         if node.key == -1:
             return -1
         else:
-            variable, value = IDThree.obtener_entropia_minima(node.data)
-            if IDThree.get_num_clase(node.data[variable]) > 1:
+            variable, value = obtener_entropia_minima(node.data)
+            if get_num_clase(node.data[variable]) > 1:
                 if(path[variable] == 1):
                     return 1
                 else:

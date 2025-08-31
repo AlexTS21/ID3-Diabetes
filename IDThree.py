@@ -1,9 +1,9 @@
-import Entropia
+from .entropia import entropia_variable
 
 def obtener_entropia_variables(data):
     entropias = {}
     for variable in data.values():
-        entropias[list(data.keys())[list(data.values()).index(variable)]] = Entropia.entropia_variable(variable)
+        entropias[list(data.keys())[list(data.values()).index(variable)]] = entropia_variable(variable)
     return entropias
 
 

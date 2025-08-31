@@ -1,4 +1,5 @@
 __pycache__/
 *.pyc
 BD.xls
+BD.csv
 tree.pkl
